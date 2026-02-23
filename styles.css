@@ -57,7 +57,7 @@ header {
   min-height: 75px;
   padding: 15px 20px;
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
   align-items: center;
   background-color: #686869;
   z-index: 1000;
@@ -66,7 +66,7 @@ header {
 
 .logo-king {
   display: flex;
-  gap: 20px;
+  gap: 30px;
   align-items: center;
   flex-shrink: 0;
 }
