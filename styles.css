@@ -7,26 +7,30 @@
   box-sizing: border-box;
 }
 
-.flex-box {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 20px;
+/* common container used for sections and other centered wrappers */
+.container {
   width: 100%;
-  margin-bottom: 25px;
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 0 20px;
 }
 
+/* base card style used by both services and pricing */
 .product {
   flex: 1;
-  max-width: 260px;
+  min-width: 250px;
+  max-width: 300px;
   padding: 20px;
   border: 1px solid #ddd;
   border-radius: 5px;
   background: #fff;
   text-align: center;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
+  margin: 10px;
 }
 
 .product:hover {
@@ -176,11 +180,6 @@ main {
     font-size: 0.9em;
     padding: 5px 8px;
   }
-
-  .flex-box {
-  display: flex;
-  flex-direction: column;
- }
 }
 
 #hero {
@@ -254,9 +253,6 @@ main {
   .hero-inner h2 { font-size: 1.6rem; }
   .hero-form { flex-direction: column; gap: 12px; max-width: 100%; }
   .hero-form input[type='submit'] { width: 100%; }
-.flex-box {
-  display: flex;
-  flex-direction: row;}
 }
 
 #home {
@@ -269,10 +265,17 @@ main {
 
 .section-title {
   font-size: 2em;
-  margin-bottom: 25px;
-  margin-top: -35px;
+  margin-bottom: 15px;
+  margin-top: -10px;
   color: #333;
 }
+
+.section-title2 {
+  font-size: 2em;
+  margin-bottom: 10px;
+  margin-top: 20px;
+  color: #333;
+} 
 
 .services-grid {
   display: flex;
@@ -325,11 +328,6 @@ main {
     display: none;
   }
 
-.flex-box {
-  display: flex;
-  flex-direction: row;
- }
-
 }
 
 #home .desc {
@@ -354,16 +352,11 @@ main {
   #home {
     margin-top: 0;
   }
-
-  .flex-box {
-  display: flex;
-  flex-direction: row;
-  }
 }
 
 
 #service {
-  margin-top: 60px;
+  margin-top: 5px; /* same as #home */
   text-align: center;
   display: flex;
   flex-direction: column;
@@ -374,17 +367,6 @@ main {
 #home, #service {
   flex: 1 1 320px;
   min-width: 280px;
-}
-
-.product {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
-  width: calc(100% / 3);
-  margin: 5px;
-  border: 1px solid #000;
-  border-radius: 3px;
 }
 
 .product > .level {
@@ -430,10 +412,20 @@ main {
     margin: 0 auto;
     margin-bottom: 10px;
   }
+}
 
-  .flex-box {
-  display: flex;
-  flex-direction: row;
+/* stick footer on larger screens */
+@media (min-width: 801px) {
+  footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+  }
+  /* prevent content hiding behind the fixed footer */
+  main {
+    margin-bottom: 120px; /* approximate footer height */
   }
 }
 
@@ -457,8 +449,17 @@ footer ul li a {
   text-decoration: none;
 }
 
-footer ul li a:hover {
+.footer ul li a:hover {
   color: #f1c40f;
+}
+
+/* put the grey background on the footer element so it spans full width */
+footer {
+  background-color: #686869;
+  border-top: 3px solid #f1c40f;
+  box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  padding: 15px 20px;
 }
 
 .footer {
@@ -468,13 +469,19 @@ footer ul li a:hover {
   text-align: center;
   font-size: 1.1em;
   color: #ffffff;
-  background-color: #686869;
+  background: transparent; /* let footer element show the grey */
   width: 100%;
   margin: 0;
-  padding: 15px 20px;
+  padding: 0;
   gap: 20px;
-  border-top: 3px solid #f1c40f;
-  box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* ensure the inner footer container is centered and constrained like other sections */
+.footer.container {
+  max-width: 1000px; /* same as .container */
+  margin: 0 auto;
+  padding: 15px 20px; /* restore inner padding for content spacing */
+  width: auto;
 }
 
 .footer-links {
@@ -496,7 +503,7 @@ footer ul li a:hover {
     gap: 30px;
   }
 
-  .footer {
+  footer {
     padding: 30px 15px;
     gap: 15px;
   }
@@ -512,7 +519,7 @@ footer ul li a:hover {
     gap: 15px;
   }
 
-  .footer {
+  footer {
     padding: 25px 15px;
     gap: 12px;
     font-size: 0.95em;
